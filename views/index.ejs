@@ -1,0 +1,274 @@
+<%- include("partials/header") %>
+
+<!-- Animation Libraries -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<style>
+  .scroll-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .scroll-content {
+    display: flex;
+    animation: scroll-left 30s linear infinite;
+    gap: 1rem;
+  }
+
+  .scroll-wrapper.paused .scroll-content {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("C_XT4YzfbFScML9M15E5b"); // Replace with your EmailJS Public Key
+  })();
+</script>
+
+<!-- Header -->
+<header class="bg-light text-center py-5 animate__animated animate__fadeInDown">
+  <div class="container">
+    <h1 class="display-5 fw-bold">Welcome to Mehndi by Diya</h1>
+    <p class="lead">Bringing elegance to your hands, one design at a time.</p>
+  </div>
+</header>
+
+<!-- About Section -->
+<section class=" py-5" data-aos="fade-up" id="about">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">About Us</h2>
+    <p class="lead">
+      Mehndi by Diya is your go-to place for traditional, modern, and custom mehndi designs. With years of experience and passion for art, we turn your hands and feet into elegant masterpieces for every occasion.
+    </p>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="container py-5" data-aos="fade-up" id="services">
+  <h2 class="text-center fw-bold mb-4">Our Services</h2>
+  <div class="row text-center">
+    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+      <div class="card h-100 shadow-sm">
+        <img src="https://i.pinimg.com/736x/9e/59/c8/9e59c86d2eaa0685084f911d76e1ea3f.jpg" 
+             class="card-img-top" 
+             alt="Bridal Mehndi" 
+             style="height: 250px; object-fit: cover;" />
+        
+        <div class="card-body text-white" 
+             style="background-image: url('/images/back.jpg'); background-size: cover; background-position: center; backdrop-filter: blur(3px);">
+          <h5 class="card-title">Bridal Mehndi</h5>
+          <p class="card-text">Intricate and elegant designs specially curated for brides on their big day.</p>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.news9live.com/wp-content/uploads/2024/08/Easy-mehndi-design-for-Teej-7.png" 
+             class="card-img-top" 
+             alt="Festival Designs" 
+             style="height: 250px; object-fit: cover;" />
+        <div class="card-body text-white" 
+             style="background-image: url('/images/back.jpg'); background-size: cover; background-position: center; backdrop-filter: blur(3px);">
+          <h5 class="card-title">Festival Designs</h5>
+          <p class="card-text">Celebrate every festival with themed, joyful mehndi patterns.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="300">
+      <div class="card h-100 shadow-sm">
+        <img src="https://rashihenna.com/wp-content/uploads/2023/10/indian-celebrating-mehndi-festival-diwali-with-yellow-dress_971925-3-Custom-scaled.jpg" 
+             class="card-img-top" 
+             alt="Custom Patterns" 
+             style="height: 250px; object-fit: cover;" />
+        <div class="card-body text-white" 
+             style="background-image: url('/images/back.jpg'); background-size: cover; background-position: center; backdrop-filter: blur(3px);">
+          <h5 class="card-title">Custom Patterns</h5>
+          <p class="card-text">Designs tailored to your personal taste and the latest trends.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section class=" py-5" data-aos="fade-up" id="gallery">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Gallery</h2>
+    <div class="row g-3">
+      <% const galleryImages = [ "m1.webp", "m2.webp", "m3.jpeg", "m4.jpeg", "m5.avif", "m6.webp" ]; %>
+
+      <% galleryImages.forEach((img, index) => { %>
+        <div class="col-sm-6 col-md-4" data-aos="flip-left" data-aos-delay="<%= index * 100 %>">
+          <div class="card shadow-sm">
+            <img src="/images/gallery/<%= img %>" class="card-img-top" alt="Mehndi Design <%= index + 1 %>" style="height: 250px; object-fit: cover;">
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-5" data-aos="fade-up" id="reviews">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">What Our Clients Say</h2>
+
+    <div class="scroll-wrapper" onmouseover="this.classList.add('paused')" onmouseout="this.classList.remove('paused')">
+      <div class="scroll-content d-flex">
+        <!-- Repeat these cards as needed -->
+        <div class="card border-0 shadow-sm p-3 text-white mx-2"
+             style="min-width: 300px;
+                    background-image: url('/images/back.jpg'); 
+                    background-size: cover; 
+                    background-position: center;
+                    border-radius: 15px;">
+          <p class="mb-2">"Absolutely loved the bridal mehndi. Diya did a fabulous job!"</p>
+          <h6 class="fw-bold">- Aisha Patel</h6>
+        </div>
+
+        <div class="card border-0 shadow-sm p-3 text-white mx-2"
+             style="min-width: 300px;
+                    background-image: url('/images/back.jpg'); 
+                    background-size: cover; 
+                    background-position: center;
+                    border-radius: 15px;">
+          <p class="mb-2">"Amazing detailing and beautiful designs!"</p>
+          <h6 class="fw-bold">- Priya Sharma</h6>
+        </div>
+
+        <div class="card border-0 shadow-sm p-3 text-white mx-2"
+             style="min-width: 300px;
+                    background-image: url('/images/back.jpg'); 
+                    background-size: cover; 
+                    background-position: center;
+                    border-radius: 15px;">
+          <p class="mb-2">"Highly recommended! Diya is the best."</p>
+          <h6 class="fw-bold">- Neha Singh</h6>
+        </div>
+
+        <!-- Add more cards here -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section 
+  class="text-white py-5" 
+  data-aos="fade-up" 
+  id="contact"
+  style="
+    background-image: url('/images/back.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  "
+>
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Book an Appointment</h2>
+    <p class="text-center mb-5">Fill in the details below to schedule your personalized Mehndi session with Diya. We’ll get back to you shortly to confirm.</p>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8 bg-dark bg-opacity-75 p-4 rounded" data-aos="zoom-in-up">
+        <form id="appointment-form">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" placeholder="Your full name" required />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-control" placeholder="name@example.com" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" placeholder="+91 9876543210" required />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Location</label>
+              <input type="text" class="form-control" placeholder="Your city or address" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Preferred Date</label>
+              <input type="date" class="form-control" required />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Preferred Time</label>
+              <select class="form-select" required>
+                <option value="">Select a time slot</option>
+                <option>10:00 AM – 12:00 PM</option>
+                <option>12:00 PM – 02:00 PM</option>
+                <option>03:00 PM – 05:00 PM</option>
+                <option>05:00 PM – 07:00 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Type of Mehndi Service</label>
+            <select class="form-select" required>
+              <option value="">Choose your service</option>
+              <option>Bridal Mehndi</option>
+              <option>Engagement Mehndi</option>
+              <option>Festival Mehndi</option>
+              <option>Party Mehndi</option>
+              <option>Kids Mehndi</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Additional Message</label>
+            <textarea class="form-control" rows="3" placeholder="Tell us more about your event or style preference..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-warning w-100 fw-bold">Submit Appointment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- AOS Init Script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<script>
+  document.getElementById('appointment-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submission
+
+    emailjs.sendForm('service_adtjpuz', 'template_9t1yguc', this)
+      .then(function(response) {
+        alert('Appointment submitted successfully!');
+        document.getElementById('appointment-form').reset();
+      }, function(error) {
+        alert('Failed to send email. Please try again later.');
+        console.error(error);
+      });
+  });
+</script>
+
+
+<%- include("partials/footer") %>

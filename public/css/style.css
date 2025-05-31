@@ -1,0 +1,14 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff8f0;
+  }
+  h1, h5 {
+    color: #8B4513;
+  }
+  .navbar {
+    background-image: url('/images/back.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
