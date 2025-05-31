@@ -182,35 +182,89 @@
     <h2 class="text-center fw-bold mb-4">Book an Appointment</h2>
     <p class="text-center mb-5">Fill in the details below to schedule your personalized Mehndi session with Diya. We’ll get back to you shortly to confirm.</p>
 
-    <div class="row justify-content-center">
-      <div class="col-md-8 bg-dark bg-opacity-75 p-4 rounded" data-aos="zoom-in-up">
-        <form id="appointment-form">
-  <input type="text" name="fullName" required placeholder="Your full name" />
-  <input type="email" name="email" required placeholder="name@example.com" />
-  <input type="tel" name="phone" required placeholder="+91 9876543210" />
-  <input type="text" name="location" required placeholder="Your city or address" />
-  <input type="date" name="preferredDate" required />
-  <select name="preferredTime" required>
-    <option value="">Select a time slot</option>
-    <option>10:00 AM – 12:00 PM</option>
-    <option>12:00 PM – 02:00 PM</option>
-    <option>03:00 PM – 05:00 PM</option>
-    <option>05:00 PM – 07:00 PM</option>
-  </select>
-  <select name="serviceType" required>
-    <option value="">Choose your service</option>
-    <option>Bridal Mehndi</option>
-    <option>Engagement Mehndi</option>
-    <option>Festival Mehndi</option>
-    <option>Party Mehndi</option>
-    <option>Kids Mehndi</option>
-  </select>
-  <textarea name="message" rows="3" placeholder="Tell us more about your event or style preference..."></textarea>
-  <button type="submit" class="btn btn-warning w-100 fw-bold">Submit Appointment</button>
-</form>
+   <div class="row justify-content-center my-5">
+  <div class="col-md-8 bg-dark bg-opacity-75 p-5 rounded shadow" data-aos="zoom-in-up">
+    <form id="appointment-form" class="needs-validation" novalidate>
+      <h2 class="text-center text-light mb-4">Book an Appointment</h2>
 
+      <div class="mb-3">
+        <label for="fullName" class="form-label text-light">Full Name</label>
+        <input type="text" class="form-control" id="fullName" name="fullName" required placeholder="Your full name">
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label text-light">Email address</label>
+        <input type="email" class="form-control" id="email" name="email" required placeholder="name@example.com">
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label text-light">Phone Number</label>
+        <input type="tel" class="form-control" id="phone" name="phone" required placeholder="+91 9876543210">
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label text-light">Location</label>
+        <input type="text" class="form-control" id="location" name="location" required placeholder="Your city or address">
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="preferredDate" class="form-label text-light">Preferred Date</label>
+          <input type="date" class="form-control" id="preferredDate" name="preferredDate" required>
+        </div>
+        <div class="col-md-6">
+          <label for="preferredTime" class="form-label text-light">Preferred Time</label>
+          <select class="form-select" id="preferredTime" name="preferredTime" required>
+            <option value="">Select a time slot</option>
+            <option>10:00 AM – 12:00 PM</option>
+            <option>12:00 PM – 02:00 PM</option>
+            <option>03:00 PM – 05:00 PM</option>
+            <option>05:00 PM – 07:00 PM</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="serviceType" class="form-label text-light">Type of Service</label>
+        <select class="form-select" id="serviceType" name="serviceType" required>
+          <option value="">Choose your service</option>
+          <option>Bridal Mehndi</option>
+          <option>Engagement Mehndi</option>
+          <option>Festival Mehndi</option>
+          <option>Party Mehndi</option>
+          <option>Kids Mehndi</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label for="message" class="form-label text-light">Additional Details</label>
+        <textarea class="form-control" id="message" name="message" rows="3" placeholder="Tell us more about your event or style preference..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-warning w-100 fw-bold">Submit Appointment</button>
+    </form>
+    <!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white border-0 rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold" id="successModalLabel">Appointment Sent!</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Your Mehndi request has been sent to <strong>Diya</strong>.</p>
+        <p>You will be contacted via <strong>Email</strong>, <strong>WhatsApp</strong>, or <strong>Phone</strong> shortly.</p>
+      </div>
+      <div class="modal-footer border-0 justify-content-center">
+        <button type="button" class="btn btn-warning fw-bold px-4" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
+  </div>
+</div>
+
+  </div>
+</div>
+
   </div>
 </section>
 
@@ -220,7 +274,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
   AOS.init();
-</script>
+</script>¸¸
 <script>
   document.getElementById('appointment-form').addEventListener('submit', async function(e) {
     e.preventDefault();

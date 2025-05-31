@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.set('view engine', 'ejs');
 
-// Render your homepage
+// Render your homepagep
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -41,7 +41,7 @@ app.post('/send-appointment', (req, res) => {
 
   // Compose email options
   let mailOptions = {
-    from: `"Mehndi by Diya Website" ${email}`, // sender address
+    from:  `${fullName} <${email}>`, // sender address
     to: 'hennabydiyacontect@gmail.com', // receiver email (Diya's email)
     subject: 'New Appointment Request from Website',
     html: `
