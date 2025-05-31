@@ -185,64 +185,30 @@
     <div class="row justify-content-center">
       <div class="col-md-8 bg-dark bg-opacity-75 p-4 rounded" data-aos="zoom-in-up">
         <form id="appointment-form">
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="form-label">Full Name</label>
-              <input type="text" class="form-control" placeholder="Your full name" required />
-            </div>
-            <div class="col-md-6 mb-3">
-              <label class="form-label">Email Address</label>
-              <input type="email" class="form-control" placeholder="name@example.com" required />
-            </div>
-          </div>
+  <input type="text" name="fullName" required placeholder="Your full name" />
+  <input type="email" name="email" required placeholder="name@example.com" />
+  <input type="tel" name="phone" required placeholder="+91 9876543210" />
+  <input type="text" name="location" required placeholder="Your city or address" />
+  <input type="date" name="preferredDate" required />
+  <select name="preferredTime" required>
+    <option value="">Select a time slot</option>
+    <option>10:00 AM – 12:00 PM</option>
+    <option>12:00 PM – 02:00 PM</option>
+    <option>03:00 PM – 05:00 PM</option>
+    <option>05:00 PM – 07:00 PM</option>
+  </select>
+  <select name="serviceType" required>
+    <option value="">Choose your service</option>
+    <option>Bridal Mehndi</option>
+    <option>Engagement Mehndi</option>
+    <option>Festival Mehndi</option>
+    <option>Party Mehndi</option>
+    <option>Kids Mehndi</option>
+  </select>
+  <textarea name="message" rows="3" placeholder="Tell us more about your event or style preference..."></textarea>
+  <button type="submit" class="btn btn-warning w-100 fw-bold">Submit Appointment</button>
+</form>
 
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="form-label">Phone Number</label>
-              <input type="tel" class="form-control" placeholder="+91 9876543210" required />
-            </div>
-            <div class="col-md-6 mb-3">
-              <label class="form-label">Location</label>
-              <input type="text" class="form-control" placeholder="Your city or address" required />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="form-label">Preferred Date</label>
-              <input type="date" class="form-control" required />
-            </div>
-            <div class="col-md-6 mb-3">
-              <label class="form-label">Preferred Time</label>
-              <select class="form-select" required>
-                <option value="">Select a time slot</option>
-                <option>10:00 AM – 12:00 PM</option>
-                <option>12:00 PM – 02:00 PM</option>
-                <option>03:00 PM – 05:00 PM</option>
-                <option>05:00 PM – 07:00 PM</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Type of Mehndi Service</label>
-            <select class="form-select" required>
-              <option value="">Choose your service</option>
-              <option>Bridal Mehndi</option>
-              <option>Engagement Mehndi</option>
-              <option>Festival Mehndi</option>
-              <option>Party Mehndi</option>
-              <option>Kids Mehndi</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Additional Message</label>
-            <textarea class="form-control" rows="3" placeholder="Tell us more about your event or style preference..."></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-warning w-100 fw-bold">Submit Appointment</button>
-        </form>
       </div>
     </div>
   </div>
@@ -256,17 +222,29 @@
   AOS.init();
 </script>
 <script>
-  document.getElementById('appointment-form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent default form submission
+  document.getElementById('appointment-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-    emailjs.sendForm('service_adtjpuz', 'template_9t1yguc', this)
-      .then(function(response) {
-        alert('Appointment submitted successfully!');
-        document.getElementById('appointment-form').reset();
-      }, function(error) {
-        alert('Failed to send email. Please try again later.');
-        console.error(error);
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/send-appointment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       });
+
+      const text = await response.text();
+      alert(text);
+
+      if (response.ok) {
+        this.reset();
+      }
+    } catch (error) {
+      alert('Error submitting appointment. Please try again later.');
+      console.error(error);
+    }
   });
 </script>
 
